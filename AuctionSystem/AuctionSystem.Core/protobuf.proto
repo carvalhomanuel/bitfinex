@@ -1,0 +1,90 @@
+﻿syntax = "proto3";
+
+service Auction {
+    rpc CreateAuction(AuctionItemRequest) returns (AuctionItemResponse);
+    rpc SendMessage(MessageRequest) returns (MessageResponse);
+    rpc PlaceBid(BidRequest) returns (BidResponse);
+    rpc GetCurrentBid(CurrentBidRequest) returns (CurrentBidResponse);
+    rpc BroadcastMessage(MessageRequest) returns (MessageResponse);
+    rpc Connect(ConnectRequest) returns (stream MessageResponse);
+    rpc AddClient(AddClientRequest) returns (AddClientResponse);
+    rpc ListClients(MessageRequest) returns (MessageResponse);
+    rpc SetSettings(SettingsRequest) returns (MessageResponse);
+    rpc SendBid(SendBidRequest) returns (MessageResponse);
+    rpc CloseAuction(CloseAuctionRequest) returns (MessageResponse);
+    rpc GetAllAuctions(GetAuctionsRequest) returns (MessageResponse);
+    rpc GetClientAuctions(GetAuctionsRequest) returns (GetAuctionsResponse);
+}
+
+message AuctionItemRequest {
+    string name = 1;
+    double amount = 2;
+}
+
+message AuctionItemResponse {
+    bool success = 1;
+}
+
+message BidRequest {
+    string auctionName = 1;
+    double bidAmount = 2;
+    string username = 3;
+}
+
+message BidResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+message CurrentBidRequest {}
+
+message CurrentBidResponse {
+    double current_bid = 1;
+}
+
+message MessageRequest {
+    string message = 1;
+}
+
+message MessageResponse {
+    string message = 1;
+}
+
+message ConnectRequest {
+    string myUsername = 1;
+    string myHost = 2;
+    string clientHost = 3;
+}
+
+message AddClientRequest {
+    string username = 1;
+    string host = 2;
+}
+
+message AddClientResponse {
+    string username = 1;
+    string hosts = 2;
+}
+
+message SettingsRequest {
+    string username = 1;
+    string host = 2;
+}
+
+message SendBidRequest {
+    string username = 1;
+    string auctionName = 2;
+    double bidAmount = 3;
+    string bidUsername = 4;
+}
+
+message CloseAuctionRequest {
+    string auctionName = 1;
+}
+
+message GetAuctionsRequest {}
+
+message GetAuctionsResponse {
+    string username = 1;
+    string auctions = 2;
+}

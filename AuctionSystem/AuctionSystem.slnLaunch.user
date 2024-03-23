@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Name": "AuctionSystem.Server\\AuctionSystem.Server.csproj",
+        "Action": "Start"
+      },
+      {
+        "Name": "AuctionSystem.Client\\AuctionSystem.Client.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
